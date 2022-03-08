@@ -48,13 +48,23 @@ public class Floor {
         System.out.println("Number Of Sub Corridors: "+ numberOfSubCorridors +"\n");
     }
 
-    public void motionDetector(int subCorridorNumber) {
-        if(subCorridorNumber<=numberOfSubCorridors){
-            for (int i = 1; i <= numberOfSubCorridors; i++) {
-                if (i != subCorridorNumber)
-                    subCorridors.get(i).airConditioner = "OFF";
-                else
-                    subCorridors.get(i).light = "ON";
+    public void motionDetector(int subCorridorNumber, boolean motion) {
+        if(subCorridorNumber<=numberOfSubCorridors ){
+            if (motion){
+                for (int i = 1; i <= numberOfSubCorridors; i++) {
+                    if (i != subCorridorNumber) {
+                        subCorridors.get(i).airConditioner = "OFF";
+                    }
+                    else
+                        subCorridors.get(i).light = "ON";
+                }
+            } else {
+                for (int i = 1; i <= numberOfSubCorridors; i++) {
+                    if (i != subCorridorNumber) {
+                        subCorridors.get(i).airConditioner = "ON";
+                    } else
+                        subCorridors.get(i).light = "OFF";
+                }
             }
         }
     }
