@@ -63,4 +63,56 @@ public class HotelTest {
                 """;
         assertThat(expected, is(equalTo(outContent.toString())));
     }
+
+    @Test
+    void shouldTurnONLightInFloorOneSubCorridorTwoWhenSomeMotionIsDetected() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        Hotel hotel = new Hotel();
+        Floor floorOne = new Floor(1);
+        Floor floorTwo = new Floor(2);
+
+        floorOne.createMainCorridor(1);
+        floorOne.createSubCorridor(2);
+        floorTwo.createMainCorridor(1);
+        floorTwo.createSubCorridor(2);
+        hotel.addFloor(floorOne);
+        hotel.addFloor(floorTwo);
+        floorOne.motionDetector(2);
+        hotel.electricityStatus();
+        
+        String expected = """
+                Number Of Floors: 2
+                Number Of Main Corridors: 1
+                Number Of Sub Corridors: 2
+                                
+                Floor 1
+                	Main corridor 1
+                		Light 1 : ON
+                		AC 1 : ON
+                                
+                	Sub corridor 1
+                		Light 1 : OFF
+                		AC 1 : OFF
+                                
+                	Sub corridor 2
+                		Light 2 : ON
+                		AC 2 : ON
+                                
+                Floor 2
+                	Main corridor 1
+                		Light 1 : ON
+                		AC 1 : ON
+                                
+                	Sub corridor 1
+                		Light 1 : OFF
+                		AC 1 : ON
+                                
+                	Sub corridor 2
+                		Light 2 : OFF
+                		AC 2 : ON
+                		
+                """;
+        assertThat(expected, is(equalTo(outContent.toString())));
+    }
 }

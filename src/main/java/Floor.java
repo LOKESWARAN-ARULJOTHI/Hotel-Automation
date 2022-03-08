@@ -47,4 +47,15 @@ public class Floor {
         System.out.println("Number Of Main Corridors: "+ numberOfMainCorridors);
         System.out.println("Number Of Sub Corridors: "+ numberOfSubCorridors +"\n");
     }
+
+    public void motionDetector(int subCorridorNumber) {
+        if(subCorridorNumber<=numberOfSubCorridors){
+            for (int i = 1; i <= numberOfSubCorridors; i++) {
+                if (i != subCorridorNumber)
+                    subCorridors.get(i).airConditioner = "OFF";
+                else
+                    subCorridors.get(i).light = "ON";
+            }
+        }
+    }
 }
