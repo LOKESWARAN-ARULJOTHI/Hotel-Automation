@@ -3,8 +3,6 @@ public class Corridor {
     protected String airConditioner;
     protected String light;
 
-    
-    
     public Corridor(String light, String airConditioner, int corridorNumber) {
         this.light = light;
         this.airConditioner = airConditioner;
